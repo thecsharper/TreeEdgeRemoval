@@ -43,10 +43,10 @@ public class Solution
     private (int maxEdges, bool canSplitEven) Dfs(int node, int parent)
     {
         int subtreeSize = 1; // Include current node
-        List<(int maxEdges, bool canSplitEven)> childrenInfo = new List<(int, bool)>();
+        List<(int maxEdges, bool canSplitEven)> childrenInfo = [];
 
         // Process all children
-        foreach (int child in adj[node])
+        foreach (var child in adj[node])
         {
             if (child != parent)
             {
@@ -59,11 +59,11 @@ public class Solution
         // If no children or leaf, subtree size is 1 (odd), cannot split
         if (childrenInfo.Count == 0) return (0, false);
 
-        int localMaxEdges = 0;
-        bool canSplitEven = false;
+        var localMaxEdges = 0;
+        var canSplitEven = false;
 
         // Try to pair children to maximize edges removed
-        int evenCount = 0;
+        var evenCount = 0;
         foreach (var (childEdges, canSplit) in childrenInfo)
         {
             if (canSplit) evenCount++;
